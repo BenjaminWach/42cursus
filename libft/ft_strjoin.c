@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 13:46:45 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/25 12:32:20 by bwach            ###   ########.fr       */
+/*   Created: 2023/10/25 10:46:06 by bwach             #+#    #+#             */
+/*   Updated: 2023/10/25 11:03:13 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	dst_len;
+	unsigned char	*mem;
+	unsigned int	*total_len;
+	size_t			i;
+	size_t			j;
 
 	i = 0;
-	dst_len = ft_strlen(dst);
-	while (dst_len + i + 1 < dstsize && src[i])
+	j = ft_strlen(s1);
+	total_len = (ft_strlen(s1) + ft_strlen(s2));
+	mem = malloc(sizeof(unsigned char) * total_len);
+	if (!mem)
+		return (NULL);
+	while (s1[i])
 	{
-		dst[i + dst_len] = src[i];
+		mem[i] = s1[i];
+		while (s2[j])
+		{
+			mem[i + j] = s2[j];
+			j++;
+		}
 		i++;
 	}
-	if (dst[i + dst_len] < dstsize)
-		dst[i + dst_len] = '\0';
-	else if (dstsize > 0)
-		dst[dstsize - 1] = '\0';
-	while (src[i])
-		i++;
-	return (i + dst_len);
+	return (mem);
 }
