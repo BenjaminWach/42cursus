@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: bwach <bwach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:59:47 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/24 14:06:33 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/24 21:17:46 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == c)
-			return (s);
+			return ((char *)&s[i]);
 		i++;
 	}
 	return (0);

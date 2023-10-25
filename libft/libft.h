@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: bwach <bwach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 09:01:39 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/24 15:44:56 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/24 20:48:28 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int		ft_atoi(char *str);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

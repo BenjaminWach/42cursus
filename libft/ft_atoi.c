@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
+/*   By: bwach <bwach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:26 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/24 15:26:24 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/24 21:11:37 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ int	ft_atoi(char *str)
 {
 	size_t	i;
 	size_t	sign;
-	size_t	result;
+	int		result;
 
 	i = 0;
 	sign = 1;
+	result = 0;
 	while (str[i])
 	{
 		while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
