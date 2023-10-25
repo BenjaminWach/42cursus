@@ -6,7 +6,7 @@
 #    By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 08:48:48 by bwach             #+#    #+#              #
-#    Updated: 2023/10/24 10:28:53 by bwach            ###   ########.fr        #
+#    Updated: 2023/10/25 22:49:09 by bwach            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
+LDFLAGS = -L.
+LDLIBS = -lft
 
 SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c\
 	ft_isprint.c ft_strlen.c\
@@ -29,6 +31,7 @@ OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -I. -c $< -o $@ 
