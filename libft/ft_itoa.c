@@ -3,48 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwach <bwach@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:39:02 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/25 08:09:45 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/26 11:52:47 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int ft_get_digits(int n)
+static int	ft_get_digits(int n)
 {
-    unsigned int    length;
+	int	length;
 
-    length = 1;
-    while (n /= 10)
-        length++;
-    return (length);
+	length = 1;
+	while (n != 0)
+	{
+		n /= 10;
+		length++;
+	}
+	return (length);
 }
 
-char    ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-    unsigned char   *mem;
-    size_t          digit;
-    size_t          num;
+	char			*mem;
+	size_t			digit;
+	size_t			num;
 
-    num = n;
-    digit = ft_get_digits(n);
-    mem = (char *)malloc(sizeof(unsigned char)*(digit +1));
-    if (n < 0)
-    {
-        num *= -1;
-        digit++;
-    }
-    if (!mem)
-        return (NULL);
-    mem[digit] = 0;
-    while (digit--)
-    {
-        mem[digit] = num % 10 + '0';
-        num = num / 10;
-    }
-    if (n < 0)
-        mem[0] = '-';
-    return (mem);
+	num = n;
+	digit = ft_get_digits(n);
+	mem = (char *)malloc(sizeof(char) * (digit +1));
+	if (n < 0)
+	{
+		num *= -1;
+		digit++;
+	}
+	if (!mem)
+		return (0);
+	mem[digit] = 0;
+	while (digit--)
+	{
+		mem[digit] = num % 10 + '0';
+		num = num / 10;
+	}
+	if (n < 0)
+		mem[0] = '-';
+	return (mem);
 }

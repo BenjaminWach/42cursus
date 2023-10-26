@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:46:45 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/25 12:32:20 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/26 10:36:41 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,18 @@
 size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {
 	size_t	i;
-	size_t	dst_len;
+	size_t	j;
 
 	i = 0;
-	dst_len = ft_strlen(dst);
-	while (dst_len + i + 1 < dstsize && src[i])
+	j = 0;
+	while (dst[i] && i < dstsize)
+		i++;
+	while (src[j] && (i + j + 1) < dstsize)
 	{
-		dst[i + dst_len] = src[i];
-		i++;
+		dst[i + j] = src[j];
+		j++;
 	}
-	if (dst[i + dst_len] < dstsize)
-		dst[i + dst_len] = '\0';
-	else if (dstsize > 0)
-		dst[dstsize - 1] = '\0';
-	while (src[i])
-		i++;
-	return (i + dst_len);
-}
+	if (i < dstsize)
+		dst[i + j] = '\0';
+	return (i + ft_strlen(src));
+}	
