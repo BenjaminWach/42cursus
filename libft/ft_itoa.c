@@ -6,60 +6,66 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:39:02 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/30 15:52:51 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 21:00:21 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_get_digits(int n)
+static char	*reverse_malloc(char *str)
 {
-	int	length;
+	char	*new;
+	int		i;
+	int		end;
 
-	length = 0;
-	while (n != 0)
-	{
-		n /= 10;
-		length++;
-	}
-	return (length);
+	end = ft_strlen(str);
+	new = malloc(sizeof(char) * (end + 1));
+	if (!new)
+		return (NULL);
+	i = -1;
+	while (--end >= 0)
+		new[++i] = str[end];
+	new[++i] = 0;
+	return (new);
+}
+
+static char	*empty_malloc(void)
+{
+	char	*empty;
+
+	empty = malloc(sizeof(char) * 2);
+	if (!empty)
+		return (NULL);
+	empty[0] = '0';
+	empty[1] = 0;
+	return (empty);
 }
 
 char	*ft_itoa(int n)
 {
-	char			*mem;
-	size_t			digit;
-	size_t			num;
+	char		tab[12];
+	int			i;
+	int			sign;
+	long int	nb;
 
-	num = n;
-	digit = ft_get_digits(n);
-	mem = (char *)malloc(sizeof(char) * (digit +1));
-	if (!mem)
-		return (0);
-	if (n < 0)
+	if (n == 0)
+		return (empty_malloc());
+	nb = (long int)n;
+	sign = 1;
+	if (nb < 0)
 	{
-		num *= -1;
-		digit++;
+		sign *= -1;
+		nb = -nb;
 	}
-	mem[digit] = 0;
-	if (digit == 0)
-		mem[0] = '0';
-	while (digit--)
+	i = 0;
+	while (nb)
 	{
-		mem[digit] = num % 10 + '0';
-		num = num / 10;
+		tab[i] = nb % 10 + '0';
+		nb = nb / 10;
+		i++;
 	}
-	if (n < 0)
-		mem[0] = '-';
-	return (mem);
+	if (sign == -1)
+		tab[i++] = '-';
+	tab[i] = 0;
+	return (reverse_malloc(tab));
 }
-
-/* #include <stdio.h>
-
-int	main(void)
-{
-	int num = -9;
-	char *result = ft_itoa(num);
-
-	printf("%s", result);
-} */

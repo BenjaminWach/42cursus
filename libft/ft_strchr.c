@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:59:47 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/28 01:18:35 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 20:42:23 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (s == NULL)
+		return (NULL);
 	while (*s)
 	{
-		if (*s == c)
+		if (*s == (unsigned char)c)
 			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
+	if ((unsigned char)c == '\0')
 		return ((char *)s);
 	return (0);
 }
