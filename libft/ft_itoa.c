@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:39:02 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/26 11:52:47 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 01:18:44 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ char	*ft_itoa(int n)
 	num = n;
 	digit = ft_get_digits(n);
 	mem = (char *)malloc(sizeof(char) * (digit +1));
+	if (!mem)
+		return (0);
 	if (n < 0)
 	{
 		num *= -1;
 		digit++;
 	}
-	if (!mem)
-		return (0);
 	mem[digit] = 0;
 	while (digit--)
 	{
