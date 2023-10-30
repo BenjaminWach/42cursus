@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:49:23 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/27 20:51:19 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 14:38:13 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new;
+	void	*content;
 
 	if (!lst || !f)
 		return (NULL);
-	new = ft_lstnew(f(lst->content));
+	content = f(lst->content);
+	new = ft_lstnew(content);
 	if (new == NULL)
 	{
+		del(content);
 		ft_lstclear(&new, del);
 		return (NULL);
 	}

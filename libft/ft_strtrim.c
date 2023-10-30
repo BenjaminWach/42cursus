@@ -6,48 +6,37 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:34:39 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/26 11:39:59 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 12:07:53 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	trim_len(char const *s1, char const *set)
-{
-	size_t	i;
-	size_t	trimmed_len;
-
-	i = 0;
-	trimmed_len = 0;
-	while (s1[i])
-	{
-		if (!ft_strchr(set, s1[i]))
-			trimmed_len++;
-		i++;
-	}
-	return (trimmed_len);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t			i;
-	size_t			j;
-	char			*mem;
+	size_t	i;
+	int		start;
+	char	*dup;
+	int		len;
 
 	i = 0;
-	j = 0;
-	mem = malloc(sizeof(unsigned char) * (trim_len(s1, set) + 1));
-	if (!mem)
-		return (NULL);
-	while (s1[i])
+	dup = 0;
+	if (!s1[0])
 	{
-		if (!ft_strchr(set, s1[i]))
-		{
-			mem[j] = s1[i];
-			j++;
-		}
-		i++;
+		dup = (char *)malloc(1);
+		if (!dup)
+			return (NULL);
+		*dup = 0;
+		return (dup);
 	}
-	mem[j] = '\0';
-	return (mem);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	start = i;
+	while (s1[i])
+		i++;
+	i--;
+	while (i >= 0 && (s1[i] && ft_strchr(set, s1[i])))
+		i--;
+	len = i - start + 1;
+	return (ft_substr(s1, (unsigned int)start, (size_t)len));
 }

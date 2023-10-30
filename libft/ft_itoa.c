@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 23:39:02 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/30 01:18:44 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 15:52:51 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_get_digits(int n)
 {
 	int	length;
 
-	length = 1;
+	length = 0;
 	while (n != 0)
 	{
 		n /= 10;
@@ -42,6 +42,8 @@ char	*ft_itoa(int n)
 		digit++;
 	}
 	mem[digit] = 0;
+	if (digit == 0)
+		mem[0] = '0';
 	while (digit--)
 	{
 		mem[digit] = num % 10 + '0';
@@ -51,3 +53,13 @@ char	*ft_itoa(int n)
 		mem[0] = '-';
 	return (mem);
 }
+
+/* #include <stdio.h>
+
+int	main(void)
+{
+	int num = -9;
+	char *result = ft_itoa(num);
+
+	printf("%s", result);
+} */

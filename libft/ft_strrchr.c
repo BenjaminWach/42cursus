@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:07:33 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/29 19:38:06 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 15:00:10 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*temp;
+	const char	*temp;
 
 	temp = NULL;
 	while (*s)
 	{
-		if (*s == (char)c)
-			temp = (char *)s;
+		if (*s == (unsigned char)c)
+			temp = s;
 		s++;
 	}
-	if (c == 0)
+	if ((unsigned char)c == 0)
 		return ((char *)s);
-	return (temp);
+	return ((char *)temp);
 }

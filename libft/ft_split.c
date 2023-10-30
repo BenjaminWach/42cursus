@@ -6,80 +6,80 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 22:33:03 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/26 13:13:05 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 14:25:20 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(const char *str, char c)
+static size_t	ft_count_words(const char *s, char c)
 {
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = 0;
-	while (*str)
-	{
-		if (*str != c && flag == 0)
-		{
-			flag = 1;
-			i++;
-		}
-		else if (*str == c)
-			flag = 0;
-		str++;
-	}
-	return (i);
-}
-
-static char	*ft_word_mem(const char *str, int first, int last)
-{
-	char	*word;
 	int		i;
+	size_t	count;
 
 	i = 0;
-	word = (char *)malloc(sizeof(char) * (last - first + 1));
-	while (first < last)
-		word[i++] = str[first++];
-	word[i] = '\0';
-	return (word);
+	count = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }
 
-static void	ft_free_mem(char **split)
+static size_t	ft_word_mem(char const *s, char c)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	if (split == 0)
-		return ;
-	while (split[i])
-		free(split[i++]);
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	return (len);
+}
+
+static void	ft_free_mem(char **split, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		free(split[j]);
+		j++;
+	}
 	free (split);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	size_t	i;
-	size_t	j;
-	int		index;
 	char	**split;
+	size_t	len_word;
 
-	i = 0;
-	j = 0;
-	index = -1;
 	split = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
 	if (!s || !split)
 		return (0);
-	while (i <= ft_strlen(s))
+	i = 0;
+	while (*s)
 	{
-		if (s[i] != c && index == 0)
-			index = 1;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
-			split[j++] = ft_word_mem((char *)s, index--, i);
-		i++;
+		while (*s == c && *s)
+			s++;
+		if (*s)
+		{
+			len_word = ft_word_mem(s, c);
+			split[i] = ft_substr(s, 0, len_word);
+			if (!split[i])
+				ft_free_mem(split, i);
+			s += len_word;
+			i++;
+		}
 	}
-	split[j] = NULL;
-	ft_free_mem(split);
+	split[i] = NULL;
 	return (split);
 }
