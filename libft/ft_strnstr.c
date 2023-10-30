@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwach <bwach@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:43:57 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/24 23:34:07 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/27 21:34:56 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return ((char *)haystack);
 	while (haystack[i] && i < len)
 	{
-		if (haystack[i] == needle[i])
+		if (haystack[i] == needle[j])
 		{
 			while (haystack[i + j] == needle[j] && i + j < len)
 			{

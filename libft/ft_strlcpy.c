@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:56:56 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/26 10:36:13 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 00:55:58 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	}
 	if (i < size)
 		dest[i] = '\0';
-	else
+	else if (size > 0)
 		dest[size -1] = '\0';
 	while (src[i])
 		i++;

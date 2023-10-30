@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 13:46:45 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/26 10:36:41 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/27 20:48:07 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,4 @@ size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 	if (i < dstsize)
 		dst[i + j] = '\0';
 	return (i + ft_strlen(src));
-}	
+}

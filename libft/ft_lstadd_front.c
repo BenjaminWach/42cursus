@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:37:42 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/26 13:54:58 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/30 00:07:37 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new->next = *lst;
-	lst = &new;
+	if (*lst)
+		new->next = *lst;
+	*lst = new;
 }

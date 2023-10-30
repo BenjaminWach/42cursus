@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:11:40 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/27 21:11:29 by bwach            ###   ########.fr       */
+/*   Created: 2023/10/26 19:15:21 by bwach             #+#    #+#             */
+/*   Updated: 2023/10/26 19:27:03 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//Renvoie le dernier element de la liste.
 #include "libft.h"
 
-int	ft_toupper(int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return (c);
+	while (lst && lst->next)
+		lst = lst->next;
+	return (lst);
 }

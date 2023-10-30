@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:11:40 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/27 21:11:29 by bwach            ###   ########.fr       */
+/*   Created: 2023/10/26 19:18:02 by bwach             #+#    #+#             */
+/*   Updated: 2023/10/27 20:41:40 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//Ajoute l'element 'new' a la fin de la liste.
 #include "libft.h"
 
-int	ft_toupper(int c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return (c);
+	t_list	*tmp;
+
+	if (!new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = ft_lstlast(*lst);
+	tmp->next = new;
 }
