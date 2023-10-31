@@ -6,7 +6,7 @@
 /*   By: bwach <bwach@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 22:33:03 by bwach             #+#    #+#             */
-/*   Updated: 2023/10/30 14:25:20 by bwach            ###   ########.fr       */
+/*   Updated: 2023/10/31 11:10:49 by bwach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,18 @@ static size_t	ft_word_mem(char const *s, char c)
 	return (len);
 }
 
-static void	ft_free_mem(char **split, int i)
+static char	*ft_free_mem(char **split, int i)
 {
 	int	j;
 
 	j = 0;
-	while (j < i)
+	while (j <= i)
 	{
 		free(split[j]);
 		j++;
 	}
 	free (split);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
@@ -74,8 +75,8 @@ char	**ft_split(char const *s, char c)
 		{
 			len_word = ft_word_mem(s, c);
 			split[i] = ft_substr(s, 0, len_word);
-			if (!split[i])
-				ft_free_mem(split, i);
+			if (!split[i] && ft_free_mem(split, i) == NULL)
+				return (NULL);
 			s += len_word;
 			i++;
 		}
